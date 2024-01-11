@@ -1,7 +1,6 @@
 <script setup lang="ts">
   defineProps<{ msg: string }>();
   const count = ref(123111);
-  const message = ref<string>('1231111111111');
 </script>
 
 <template>
