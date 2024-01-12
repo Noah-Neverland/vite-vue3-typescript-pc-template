@@ -66,6 +66,7 @@ declare global {
     VITE_PROXY: [string, string][];
     VITE_DROP_CONSOLE: boolean;
     VITE_SERVE_WWW: string;
+    VITE_GLOB_APP_TITLE: string;
   }
 
   declare function parseInt(s: string | number, radix?: number): number;

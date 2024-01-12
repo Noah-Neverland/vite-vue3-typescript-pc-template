@@ -6,8 +6,9 @@ import windi from 'vite-plugin-windicss';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { configHtmlPlugin } from './html';
 
-export function createVitePlugins(isBuild: boolean) {
+export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     vue(),
     vueJsx(),
@@ -38,6 +39,9 @@ export function createVitePlugins(isBuild: boolean) {
   vitePlugins.push(windi());
 
   isBuild && vitePlugins.push(legacy());
+
+  // vite-plugin-html
+  vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
 
   return vitePlugins;
 }

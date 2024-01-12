@@ -5,6 +5,7 @@ import autoprefixer from 'autoprefixer';
 import { createProxy } from './build/vite/proxy';
 import { wrapperEnv } from './build/utils';
 import { createVitePlugins } from './build/vite/plugin';
+import { OUTPUT_DIR } from './build/constant';
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -34,6 +35,12 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     esbuild: {
       pure: VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
     },
+    build: {
+      target: 'es2015',
+      cssTarget: 'chrome80',
+      outDir: OUTPUT_DIR,
+      sourcemap: !VITE_DROP_CONSOLE,
+    },
     // css 相关的配置
     css: {
       preprocessorOptions: {
@@ -58,6 +65,6 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       },
       extensions: ['.mjs', '.js', '.jsx', '.ts', '.json', '.vue'],
     },
-    plugins: createVitePlugins(isBuild),
+    plugins: createVitePlugins(viteEnv, isBuild),
   };
 });

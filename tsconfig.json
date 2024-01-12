@@ -8,7 +8,7 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "#/*": ["typings/*"]
+      "#/*": ["types/*"]
     },
 
     /* Bundler mode */
@@ -31,7 +31,9 @@
     "src/**/*.vue",
     "src/**/*.d.ts",
     "typings/**/*.ts",
-    "typings/**/*.d.ts"
+    "typings/**/*.d.ts",
+    "types/**/*.ts",
+    "types/**/*.d.ts",
   ],
   "exclude": ["node_modules", "tests/server/**/*.ts", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
