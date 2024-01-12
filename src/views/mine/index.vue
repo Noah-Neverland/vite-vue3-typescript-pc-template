@@ -4,7 +4,7 @@
   const userStore = useUserStore();
 
   const onClick = async () => {
-    userStore.setToken('123111');
+    userStore.setToken('12311111');
   };
 </script>
 

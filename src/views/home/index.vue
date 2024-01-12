@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import HelloWorld from '@/components/HelloWorld.vue';
-  const message = ref<string>('123');
+  const message = ref<string>('123123');
 </script>
 
 <template>

@@ -31,6 +31,7 @@ export function createVitePlugins(isBuild: boolean) {
     }),
     Components({
       resolvers: [ElementPlusResolver()],
+      dts: 'typings/components.d.ts',
     }),
   ];
 
