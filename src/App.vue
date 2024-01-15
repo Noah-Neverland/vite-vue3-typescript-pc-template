@@ -1,19 +1,11 @@
 <script setup lang="ts">
-  import { useRouter } from 'vue-router';
+  import { useAppStore } from '@/store/modules/app';
 
-  const router = useRouter();
-
-  const onClick = (path: string) => {
-    router.push({ path });
-  };
+  const appStore = useAppStore();
 </script>
 
 <template>
-  <div class="app">
-    <ul>
-      <li @click="onClick('/')">首页</li>
-      <li @click="onClick('mine')">我的</li>
-    </ul>
+  <el-config-provider :locale="appStore.getLocal" :size="appStore.size">
     <router-view />
-  </div>
+  </el-config-provider>
 </template>

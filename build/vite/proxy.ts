@@ -11,7 +11,7 @@ type ProxyTargetList = Record<string, ProxyOptions>;
 
 const httpsRE = /^https:\/\//;
 
-const parseTarget = (target) => {
+const parseTarget = (target: string) => {
   const isHttps = httpsRE.test(target);
   if (/(http|https):\/\/([\w.]+\/?)\S*/.test(target)) {
     return target;
@@ -23,7 +23,7 @@ const parseTarget = (target) => {
  * Generate proxy
  * @param list
  */
-export function createProxy(list: ProxyList = [], www) {
+export function createProxy(list: ProxyList = [], www: string) {
   const ret: ProxyTargetList = {};
   for (const [prefix, target] of list) {
     const isHttps = httpsRE.test(parseTarget(target || www));

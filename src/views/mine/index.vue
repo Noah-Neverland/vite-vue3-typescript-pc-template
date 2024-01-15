@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-  import { useUserStore } from '@/store/modules/user';
+  import { useAppStore } from '@/store/modules/app';
 
-  const userStore = useUserStore();
+  const appStore = useAppStore();
 
   const onClick = async () => {
-    userStore.setToken('12311111');
+    appStore.setLanguage('en');
   };
 </script>
 
 <template>
   <div>
-    <el-button type="primary" @click="onClick">保存用户信息</el-button>{{ userStore.getToken }}
+    <el-button type="primary" @click="onClick">保存用户信息</el-button>
   </div>
 </template>

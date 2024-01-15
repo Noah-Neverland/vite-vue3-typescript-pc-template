@@ -47,7 +47,7 @@ class RequestHttp {
       (error: AxiosError) => {
         // 请求报错
         Promise.reject(error);
-      },
+      }
     );
     /**
      * 响应拦截器
@@ -75,7 +75,7 @@ class RequestHttp {
         if (!window.navigator.onLine) {
           ElMessage.error('网络连接失败'); // 可以跳转到错误页面，也可以不做操作
         }
-      },
+      }
     );
   }
   handleCode(code: number): void {

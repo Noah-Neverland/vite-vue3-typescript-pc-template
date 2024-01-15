@@ -10,10 +10,7 @@ import { configHtmlPlugin } from './html';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
-    vue(),
-    vueJsx(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
@@ -21,7 +18,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         /\.md$/, // .md
       ],
       imports: ['vue'],
-      dts: 'typings/auto-imports.d.ts',
+      dts: 'types/auto-imports.d.ts',
       // 解决eslint报错问题
       eslintrc: {
         // 这里先设置成true然后npm run dev 运行之后会生成 .eslintrc-auto-import.json 文件之后，在改为false
@@ -29,11 +26,18 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         filepath: './.eslintrc-auto-import.json', // 生成的文件路径
         globalsPropValue: true,
       },
+      resolvers: [ElementPlusResolver()],
     }),
     Components({
       resolvers: [ElementPlusResolver()],
-      dts: 'typings/components.d.ts',
+      // 指定自定义组件位置(默认:src/components)
+      dirs: ['src/**/components'],
+      // 配置文件位置 (false:关闭自动生成)
+      dts: false,
+      // dts: 'types/components.d.ts',
     }),
+    vueJsx(),
+    vue(),
   ];
 
   vitePlugins.push(windi());

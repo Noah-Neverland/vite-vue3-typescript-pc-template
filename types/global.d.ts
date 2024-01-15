@@ -8,32 +8,6 @@ import type {
 } from 'vue';
 
 declare global {
-  const __APP_INFO__: {
-    pkg: {
-      name: string;
-      version: string;
-      dependencies: Recordable<string>;
-      devDependencies: Recordable<string>;
-    };
-    lastBuildTime: string;
-  };
-  // declare interface Window {
-  //   // Global vue app instance
-  //   __APP__: App<Element>;
-  // }
-  declare interface Window {
-    DDLogin: any;
-    attachEvent: any;
-  }
-
-  // vue
-  declare type PropType<T> = VuePropType<T>;
-  declare type VueNode = VNodeChild | JSX.Element;
-
-  export type Writable<T> = {
-    -readonly [P in keyof T]: T[P];
-  };
-
   declare type Nullable<T> = T | null;
   declare type NonNullable<T> = T extends null | undefined ? never : T;
   declare type Recordable<T = any> = Record<string, T>;
