@@ -41,6 +41,7 @@ declare global {
     VITE_DROP_CONSOLE: boolean;
     VITE_SERVE_WWW: string;
     VITE_GLOB_APP_TITLE: string;
+    VITE_LEGACY: boolean;
   }
 
   declare function parseInt(s: string | number, radix?: number): number;

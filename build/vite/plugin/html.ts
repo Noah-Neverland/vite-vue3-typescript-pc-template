@@ -17,6 +17,7 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
   };
 
   const htmlPlugin: PluginOption[] = createHtmlPlugin({
+    viteNext: true,
     minify: isBuild,
     inject: {
       // Inject data into ejs template

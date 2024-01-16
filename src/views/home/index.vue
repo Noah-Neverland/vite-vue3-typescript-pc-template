@@ -7,7 +7,6 @@
   const onClick = (path: string) => {
     router.push({ path });
   };
-  const message = ref<string>('123123');
 </script>
 
 <template>
@@ -18,6 +17,5 @@
     </ul>
     <div class="app-content font-bold text-2xl mb-2">123</div>
     <HelloWorld msg="oooppoo" />
-    {{ message }}
   </div>
 </template>

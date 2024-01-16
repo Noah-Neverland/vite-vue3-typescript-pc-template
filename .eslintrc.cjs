@@ -58,6 +58,7 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
+    'vue/no-unused-vars': 'warn',
     'space-before-function-paren': 'off',
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',

@@ -8,7 +8,12 @@ import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { configHtmlPlugin } from './html';
 
+import Icons from 'unplugin-icons/vite';
+import IconsResolver from 'unplugin-icons/resolver';
+
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
+  const { VITE_LEGACY } = viteEnv;
+
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     AutoImport({
       include: [
@@ -17,7 +22,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         /\.vue\?vue/, // .vue
         /\.md$/, // .md
       ],
-      imports: ['vue'],
+      imports: ['vue', '@vueuse/core'],
       dts: 'types/auto-imports.d.ts',
       // 解决eslint报错问题
       eslintrc: {
@@ -26,15 +31,30 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         filepath: './.eslintrc-auto-import.json', // 生成的文件路径
         globalsPropValue: true,
       },
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(), // Auto import icon components
+        // 自动导入图标组件
+        IconsResolver({
+          prefix: 'Icon',
+        }),
+      ],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(), // Auto register icon components
+        // 自动注册图标组件
+        IconsResolver({
+          enabledCollections: ['ep'],
+        }),
+      ],
       // 指定自定义组件位置(默认:src/components)
       dirs: ['src/**/components'],
       // 配置文件位置 (false:关闭自动生成)
       dts: false,
       // dts: 'types/components.d.ts',
+    }),
+    Icons({
+      autoInstall: true,
     }),
     vueJsx(),
     vue(),
@@ -42,7 +62,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   vitePlugins.push(windi());
 
-  isBuild && vitePlugins.push(legacy());
+  VITE_LEGACY &&
+    isBuild &&
+    vitePlugins.push(legacy({ targets: ['defaults', 'ie >= 11', 'chrome 52'] }));
 
   // vite-plugin-html
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));

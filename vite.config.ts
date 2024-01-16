@@ -77,5 +77,17 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       extensions: ['.mjs', '.js', '.cjs', '.jsx', '.ts', '.json', '.vue'],
     },
     plugins: createVitePlugins(viteEnv, isBuild),
+    // 预加载项目必须的组件
+    optimizeDeps: {
+      include: [
+        'vue',
+        'vue-router',
+        'pinia',
+        'axios',
+        'element-plus/dist/index.css',
+        'element-plus/es/locale/lang/zh-cn',
+        'element-plus/es/locale/lang/en',
+      ],
+    },
   };
 });
