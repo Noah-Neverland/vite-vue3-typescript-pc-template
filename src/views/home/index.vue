@@ -10,12 +10,12 @@
 </script>
 
 <template>
-  <div>
+  <div class="home">
     <ul>
-      <li @click="onClick('/')">首页</li>
+      <li class="text-primary" @click="onClick('/')">首页</li>
       <li @click="onClick('mine')">我的</li>
     </ul>
-    <div class="app-content font-bold text-2xl mb-2">123</div>
+    <div class="app-content flex-center">123</div>
     <HelloWorld msg="oooppoo" />
   </div>
 </template>
